@@ -6,20 +6,30 @@
 //
 
 import UIKit
+import RealmSwift
+
 
 class TasksTableViewController: UITableViewController {
 
+    var tasksItems: [Task] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getTasks()
     }
 
-    // MARK: - Table view data source
+    func getTasks(){
+        let realm = try! Realm()
+        let tasks = realm.objects(Task.self)
+        tasksItems = Array(tasks)
+        tableView.reloadData()
+        
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

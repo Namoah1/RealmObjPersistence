@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import RealmSwift
+
+protocol NewTaskControllerProtocol: AnyObject {
+    func updatedTodo()
+}
 
 class NewTaskViewController: UIViewController {
     
-    
+    weak var delegate: NewTaskControllerProtocol?
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var saveButton: UIButton!
@@ -18,18 +23,30 @@ class NewTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func saveTapped(_ sender: Any) {
+        let titleFieldText = titleTextField.text ?? "N/A"
+        let detailTextView = detailTextView.text ?? "N/A"
+        
+        newRecord(title: titleFieldText, detail: detailTextView)
+        
     }
-    */
+    
+    func newRecord(title: String, detail: String){
+        let realm = try! Realm()
+        try? realm.write {
+            let task = Task()
+            task.title = title
+            task.detail = detail
+            realm.add(task)
+        }
+        
+        self.dismiss(animated: true) {
+            self.delegate?.updatedTodo()
+        }
+    }
 
 }

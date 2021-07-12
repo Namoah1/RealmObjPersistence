@@ -78,9 +78,9 @@
 		62140600269CE64F0065A489 /* RealmObjPersistence */ = {
 			isa = PBXGroup;
 			children = (
+				62FE669B269CF36B00AB2C31 /* Assets */,
 				6214060F269CE6540065A489 /* Info.plist */,
 				62FE66A0269CF52600AB2C31 /* Model */,
-				62FE669B269CF36B00AB2C31 /* Assets */,
 				62FE669A269CF34000AB2C31 /* Storyboard */,
 				62FE6699269CF31E00AB2C31 /* Controller */,
 			);

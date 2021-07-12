@@ -110,6 +110,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="saveTapped:" destination="Lh1-pA-oEC" eventType="touchUpInside" id="fuw-ot-8h8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8tT-Bm-3Fa"/>
